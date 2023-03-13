@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 struct persone
 {
@@ -21,12 +19,10 @@ int main()
     {
         char data[5];
 
-        fscanf(f, "%s", people[i].cognome);
-        fscanf(f, "%s", people[i].nome);
-        fscanf(f, "%s", people[i].sesso);
-
-        fscanf(f, "%s", data);
-        people[i].nascita = atoi(data);
+        fscanf(f, "%s", &people[i].cognome);
+        fscanf(f, "%s", &people[i].nome);
+        fscanf(f, "%s", &people[i].sesso);
+        fscanf(f, "%d", &people[i].nascita);
 
         printf("\nCognome: %s, Nome: %s, Sesso: %s, Nascita: %d", people[i].cognome, people[i].nome, people[i].sesso, people[i].nascita);
         i++;
