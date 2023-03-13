@@ -14,7 +14,7 @@ int main()
 
     while (!feof(file))
     {
-        fscanf(file, "%s", buffer);
+        fscanf(file, "%s", &buffer);
         printf("%s ", buffer);
     }
 
