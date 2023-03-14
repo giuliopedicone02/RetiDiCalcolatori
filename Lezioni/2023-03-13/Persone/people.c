@@ -15,6 +15,10 @@ int main()
     struct persone people[100];
     int i = 0;
 
+    printf("\n---------------------------------------------------------\n");
+    printf("Cognome\t\tNome\t\tSesso\t\tNascita");
+    printf("\n---------------------------------------------------------");
+
     while (!feof(f))
     {
         char data[5];
@@ -24,7 +28,7 @@ int main()
         fscanf(f, "%s", &people[i].sesso);
         fscanf(f, "%d", &people[i].nascita);
 
-        printf("\nCognome: %s, Nome: %s, Sesso: %s, Nascita: %d", people[i].cognome, people[i].nome, people[i].sesso, people[i].nascita);
+        printf("\n%s\t\t%s\t\t%s\t\t%d", people[i].cognome, people[i].nome, people[i].sesso, people[i].nascita);
         i++;
     }
 }
