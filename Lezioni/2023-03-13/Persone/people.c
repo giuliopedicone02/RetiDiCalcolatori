@@ -15,9 +15,11 @@ int main()
     struct persone people[100];
     int i = 0;
 
+    printf("\033[1;37m"); // Bianco in grassetto
     printf("\n---------------------------------------------------------\n");
     printf("Cognome\t\tNome\t\tSesso\t\tNascita");
     printf("\n---------------------------------------------------------");
+    printf("\033[0m"); // Reset colori
 
     while (!feof(f))
     {
