@@ -55,5 +55,16 @@ int main()
         }
     }
 
-    printf("\n\033[1;31mMi dispiace, non ho trovato %s in rubrica\033[0m", cerca);
+    printf("\n\033[1;31mMi dispiace, non ho trovato %s in rubrica.\033[0m\n\nEcco la tua rubrica: ", cerca);
+
+    printf("\033[1;37m"); // Bianco in grassetto
+    printf("\n---------------------------------------------------------\n");
+    printf("Nome\t\tIndirizzo\tNumero");
+    printf("\n---------------------------------------------------------");
+    printf("\033[0m"); // Reset colori
+
+    for (int i = 0; i < dim; i++)
+    {
+        printf("\n%s\t\t%s\t\t%s", persone[i].nome, persone[i].indirizzo, persone[i].numero);
+    }
 }
