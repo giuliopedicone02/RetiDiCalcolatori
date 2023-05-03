@@ -43,4 +43,7 @@ int main(int argc, char **argv)
     close(sockfd);
 
     return 0;
+
+    // Si esegue con ./receiver NumeroDiPorta
+    // Esempio ./receiver 192.168.56.103 5050
 }
