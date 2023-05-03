@@ -35,15 +35,17 @@ int main(int argc, char **argv)
         return -1;
     }
 
-    n = recvfrom(sockfd, buffer, 99, 0, (struct sockaddr *)&dest_addr, &len);
-    buffer[n] = 0;
+    for (;;)
+    {
+        n = recvfrom(sockfd, buffer, 99, 0, (struct sockaddr *)&dest_addr, &len);
+        buffer[n] = 0;
 
-    printf("IP %s, Port %d, Messaggio %s\n", inet_ntoa(dest_addr.sin_addr), ntohs(dest_addr.sin_port), buffer);
+        printf("IP %s, Port %d, Messaggio %s\n", inet_ntoa(dest_addr.sin_addr), ntohs(dest_addr.sin_port), buffer);
+
+        sendto(sockfd, buffer, strlen(buffer), 0, (struct sockaddr *)&dest_addr, len);
+    }
 
     close(sockfd);
 
     return 0;
-
-    // Si esegue con ./receiver NumeroDiPorta
-    // Esempio ./receiver 192.168.56.103 5050
 }
