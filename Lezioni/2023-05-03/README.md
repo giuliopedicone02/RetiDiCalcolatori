@@ -4,13 +4,14 @@
 
 Un socket è un oggetto software che permette l'invio e la ricezione di dati, tra host remoti (tramite una rete) o tra processi locali (Inter-Process Communication).
 
-La chiamata **socket()** restituisce un identificatore di socket.
-
 ## Il metodo socket()
 
 ```c
 int socket(int domain, int type, int protocol)
 ```
+
+La chiamata **socket()** restituisce un identificatore di socket.
+
 * **domain:** AF_INET, PF_INET, PF_INET6
 * **type:** SOCK_DGRAM, SOCK_STREAM
 * **protocol:** 0 (viene scelto il protocollo più adatto)
