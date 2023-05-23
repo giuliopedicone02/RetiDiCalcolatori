@@ -1,2 +1,6 @@
 # Escludi tutti i file eseguibili
 *.exe
+
+# Escludi cartella esami
+
+Esercizi/Esami
