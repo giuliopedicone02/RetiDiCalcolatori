@@ -3,4 +3,7 @@
 
 # Escludi cartella esami
 
-Esercizi/Esami
+Esercizi/Esami/*
+
+# Carica solo questi
+!Esercizi/Esami/2021-07-23
