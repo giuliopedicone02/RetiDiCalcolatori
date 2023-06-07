@@ -1,14 +1,3 @@
-/**
- * @file server.c
- * @author Tend (casablancaernesto@gmail.com)
- * @brief Semplice server tcp ipv4
- * @version 0.1
- * @date 2023-05-20
- *
- * @copyright Copyright (c) 2023
- *
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -137,6 +126,8 @@ char *stampaListaUtenti()
     buffer = malloc(sizeof(char) * 1000);
     int porta;
 
+    memset(buffer, 0, sizeof(buffer));
+
     if (file == NULL)
     {
         printf("File non trovato!\n");
@@ -158,6 +149,8 @@ char *stampaListaFileUtenti(char *username)
     char *buffer, user[40], filename[40];
     buffer = malloc(sizeof(char) * 1000);
     int numeroFiles = 0;
+
+    memset(buffer, 0, sizeof(buffer));
 
     if (file == NULL)
     {
@@ -205,15 +198,11 @@ int main(int argc, char *argv[])
     socklen_t client_struct_length = sizeof(client_addr);
     size_t strl = strlen(SERVER_RESP);
 
-    // Azzera tutte le strutture dati. '\0' e 0 sono equivalenti
     memset(&server_addr, 0, sizeof(server_addr));
     memset(&client_addr, 0, sizeof(client_addr));
     memset(server_message, '\0', sizeof(server_message));
     memset(client_message, '\0', sizeof(client_message));
 
-    // Creazione del socket.
-    // Dato che upd è il protocollo di default per SOCK_STREAM, il terzo parametro può essere 0
-    // sockfd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd < 0)
     {
@@ -222,13 +211,10 @@ int main(int argc, char *argv[])
     }
     printf("Socket created successfully\n");
 
-    // Si impostano le informazioni del server
-    // In questo esempio la porta è hard-coded
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(PORT);
     server_addr.sin_addr.s_addr = INADDR_ANY; // Il server accetta connessioni da qualsiasi indirizzo
 
-    // Si associa il socket all'indirizzo e alla porta
     if (bind(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0)
     {
         perror("Couldn't bind to the port");
@@ -236,7 +222,6 @@ int main(int argc, char *argv[])
     }
     printf("Done with binding\n");
 
-    // Si è disposti ad accettare le richieste di connessione in arrivo
     if (listen(sockfd, N_ACCEPT) < 0)
     {
         perror("Could't listen to connections");
@@ -285,24 +270,12 @@ int main(int argc, char *argv[])
                 strcpy(server_message, "\033[1;32mREGISTRAZIONE EFFETTUATA CON SUCCESSO\n\033[0m");
             }
 
-            if (send(sockfd_conn, server_message, strlen(server_message), 0) < 0)
-            {
-                perror("Can't send");
-                return 1;
-            }
-
             break;
 
         case 2:
 
             printf("Richiesta Lista utenti\n");
             strcpy(server_message, stampaListaUtenti());
-
-            if (send(sockfd_conn, server_message, strlen(server_message), 0) < 0)
-            {
-                perror("Can't send");
-                return 1;
-            }
 
             break;
 
@@ -315,12 +288,6 @@ int main(int argc, char *argv[])
             if (strcmp(server_message, "NOT FOUND") == 0) // Utente non trovato
             {
                 strcpy(server_message, "\033[1;31mUTENTE NON TROVATO\n\033[0m");
-            }
-
-            if (send(sockfd_conn, server_message, strlen(server_message), 0) < 0)
-            {
-                perror("Can't send");
-                return 1;
             }
 
             break;
@@ -342,6 +309,13 @@ int main(int argc, char *argv[])
 
             printf("Default\n");
             continue;
+        }
+
+        // Invia una risposta al client
+        if (send(sockfd_conn, server_message, strlen(server_message), 0) < 0)
+        {
+            perror("Can't send");
+            return 1;
         }
     }
 

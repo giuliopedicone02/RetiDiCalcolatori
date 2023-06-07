@@ -1,13 +1,3 @@
-/**
- * @file client.c
- * @author Tend (casablancaernesto@gmail.com)
- * @brief Semplice client tcp ipv4
- * @version 0.1
- * @date 2023-05-20
- *
- * @copyright Copyright (c) 2023
- *
- */
 #include <stdio.h>
 #include <string.h>
 #include <sys/socket.h>
@@ -115,14 +105,10 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    // Azzera tutte le strutture dati. '\0' e 0 sono equivalenti
     memset(&server_addr, 0, server_struct_length);
     memset(server_message, 0, sizeof(server_message));
     memset(client_message, '\0', sizeof(client_message));
 
-    // Creazione del socket.
-    // Dato che tcp è il protocollo di default per SOCK_STREAM, il terzo parametro può essere 0
-    // sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_TCP);
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd < 0)
     {
@@ -131,8 +117,6 @@ int main(int argc, char *argv[])
     }
     printf("Socket created successfully\n");
 
-    // Si impostano le informazioni del server a cui connettersi
-    // In questo esempio porta e indirizzo sono hard-coded
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(PORT);
     server_addr.sin_addr.s_addr = inet_addr(argv[1]);
@@ -197,6 +181,7 @@ int main(int argc, char *argv[])
         }
 
         int n = 0;
+        memset(server_message, 0, sizeof(server_message));
 
         n = recv(sockfd, server_message, sizeof(server_message), 0);
 
