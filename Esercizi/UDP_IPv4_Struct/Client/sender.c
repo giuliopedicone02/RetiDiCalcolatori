@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 
     if (argc < 2)
     {
-        fprintf(stderr, "use : %s address \n", argv[0]);
+        fprintf(stderr, "use: %s address \n", argv[0]);
         return 1;
     }
 
@@ -49,9 +49,9 @@ int main(int argc, char **argv)
     Giocatore p1;
     char s = '\0';
 
-    printf("Vuoi un inserire un giocatore ? \n");
-    printf("Se si inserisci la lettera s : ");
-    scanf(" %c", &s);
+    printf("Vuoi inserire un giocatore? \n");
+    printf("Se si inserisci la lettera s: ");
+    scanf("%c", &s);
     getchar();
 
     while (s == 's')
@@ -85,8 +85,8 @@ int main(int argc, char **argv)
 
         printf("Risposta del server: \n%s\n\n", server_message);
 
-        printf("Vuoi un inserire un giocatore ? \n");
-        printf("Se si inserisci la lettera s : ");
+        printf("Vuoi inserire un giocatore? \n");
+        printf("Se si inserisci la lettera s: ");
         scanf("%c", &s);
         getchar();
     }
