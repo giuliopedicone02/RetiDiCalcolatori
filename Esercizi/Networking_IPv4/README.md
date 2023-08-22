@@ -1,6 +1,6 @@
 # Networking IPv4
 
-![Schema di Rete](SchemaDiRete.png)
+![Schema di Rete](SchemaDiRete.PNG)
 
 # Istruzioni di configurazione
 
