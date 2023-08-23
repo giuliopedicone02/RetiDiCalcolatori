@@ -1,6 +1,6 @@
 # Networking IPv4
 
-![Schema di Rete](SchemaDiRete.png)
+![Schema di Rete](SchemaDiRete.PNG)
 
 # Istruzioni di configurazione
 
@@ -123,15 +123,15 @@
  2) Eseguire il comando **ping / traceroute** per verificare il collegamento:
 
     ```bash
-        ping client2
+        ping server
 
         # alternativa:
 
-        ping 192.168.2.1
+        ping 192.168.3.1
 
         # alternativa:
 
-        traceroute client2
+        traceroute server
 
         # Risultato atteso:
         traceroute to server (192.168.3.1), 30 hops max, 60 byte packets
