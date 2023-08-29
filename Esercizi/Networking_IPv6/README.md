@@ -85,5 +85,5 @@
         # Risultato atteso:
         traceroute to client2 (abcd::201), 30 hops max, 60 byte packets
         1 router (abcd::1ff) 0.527 ms 0.496 ms 0.489 ms
-        2 client2 (abcd::101) 0.788 ms 0.780 ms 0.772 ms
+        2 client2 (abcd::101) 0.788 ms 0.780 ms 0.773 ms
      ```
